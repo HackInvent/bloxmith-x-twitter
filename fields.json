@@ -1,0 +1,155 @@
+[
+  {
+    "key": "enabled",
+    "type": "boolean",
+    "label": "Enable remote access",
+    "help": "Off by default. While off, no request reaches X and the wallet is never read."
+  },
+  {
+    "key": "secret_ref",
+    "label": "User-context grant secret",
+    "placeholder": "secret://workspace/x_user",
+    "help": "Wallet reference holding the OAuth 2.0 user grant (access_token, refresh_token, client_id). Needed for post and delete_post; never the token itself."
+  },
+  {
+    "key": "bearer_secret_ref",
+    "label": "App-only bearer secret",
+    "placeholder": "secret://workspace/x_app",
+    "help": "Optional wallet reference holding the app's bearer token. When set, searches and lookups use it instead of the user grant."
+  },
+  {
+    "key": "operation",
+    "type": "select",
+    "options": [
+      "post",
+      "delete_post",
+      "search_recent",
+      "get_user",
+      "user_posts"
+    ],
+    "label": "Default operation",
+    "help": "Used when a request gives no operation; plain text is its main parameter. post and delete_post need Allow writes."
+  },
+  {
+    "key": "allowed_operations",
+    "type": "json",
+    "rows": 2,
+    "label": "Operations a request may choose",
+    "help": "JSON array among [\"post\", \"delete_post\", \"search_recent\", \"get_user\", \"user_posts\"]. The default operation is always allowed."
+  },
+  {
+    "key": "page_size",
+    "type": "integer",
+    "min": 10,
+    "max": 100,
+    "label": "Posts per page",
+    "help": "max_results sent to X for searches and timelines, 10-100. Each post read counts against the access level's quota."
+  },
+  {
+    "key": "allow_writes",
+    "type": "boolean",
+    "label": "Allow posting",
+    "help": "Off by default. Required for post and delete_post; nothing is published while it is off."
+  },
+  {
+    "key": "max_weighted_length",
+    "type": "integer",
+    "min": 1,
+    "max": 25000,
+    "group": "write",
+    "label": "Post length limit",
+    "help": "Weighted length checked before sending: 280 for most accounts, more for subscriptions that allow long posts. X makes the final check."
+  },
+  {
+    "key": "media_root",
+    "type": "directory",
+    "group": "write",
+    "label": "Images directory",
+    "help": "Only JPEG, PNG or WEBP files inside this directory can be attached. Empty disables images."
+  },
+  {
+    "key": "allow_delete",
+    "type": "boolean",
+    "group": "write",
+    "label": "Allow delete_post",
+    "help": "Separate switch for deleting posts by ID. X keeps no trash: a deletion is final."
+  },
+  {
+    "key": "max_pages",
+    "type": "integer",
+    "min": 1,
+    "max": 20,
+    "advanced": true,
+    "label": "Pages per read (max)",
+    "help": "Pages per search or timeline; when reached, the result gives next_token to continue."
+  },
+  {
+    "key": "max_media_bytes",
+    "type": "integer",
+    "min": 1024,
+    "max": 5242880,
+    "advanced": true,
+    "group": "write",
+    "label": "Image size limit (bytes)",
+    "help": "Larger images are refused before the wallet is read. X accepts images up to 5 MB."
+  },
+  {
+    "key": "timeout_sec",
+    "type": "integer",
+    "min": 5,
+    "max": 300,
+    "advanced": true,
+    "label": "Operation deadline (s)",
+    "help": "Total time for one operation, token refresh, image upload, pages and retries included."
+  },
+  {
+    "key": "max_retries",
+    "type": "integer",
+    "min": 0,
+    "max": 5,
+    "advanced": true,
+    "label": "Retries",
+    "help": "Reads retry after HTTP 429, 5xx or a lost connection; writes only after HTTP 429 or a connection that never opened."
+  },
+  {
+    "key": "max_retry_wait_sec",
+    "type": "integer",
+    "min": 1,
+    "max": 300,
+    "advanced": true,
+    "label": "Longest retry wait (s)",
+    "help": "A Retry-After or rate-limit reset further away returns rate_limited instead of waiting."
+  },
+  {
+    "key": "max_request_bytes",
+    "type": "integer",
+    "min": 1024,
+    "max": 1048576,
+    "advanced": true,
+    "label": "Request size limit (bytes)",
+    "help": "Bound for the incoming request and for each JSON body sent to X."
+  },
+  {
+    "key": "max_response_bytes",
+    "type": "integer",
+    "min": 65536,
+    "max": 33554432,
+    "advanced": true,
+    "label": "Response size limit (bytes)",
+    "help": "Larger X responses are refused as protocol errors."
+  },
+  {
+    "key": "api_base_url",
+    "advanced": true,
+    "label": "X API origin",
+    "placeholder": "https://api.x.com",
+    "help": "Keep https://api.x.com. Another origin receives the tokens; plain HTTP only for a loopback test host."
+  },
+  {
+    "key": "ca_file",
+    "advanced": true,
+    "label": "Custom CA file",
+    "placeholder": "/etc/ssl/private-ca.pem",
+    "help": "Optional absolute PEM file for a privately signed HTTPS origin. TLS verification cannot be disabled."
+  }
+]

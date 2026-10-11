@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "kind": "x_twitter",
+  "block_version": "0.1.0",
+  "maintained_by": "HackInvent",
+  "source": {
+    "algorithm": "block-source-v1",
+    "sha256": "6faee0650ff696b2f2bc6ae748caa6b096d74989df8f663c9235189d82aa1362"
+  },
+  "bloxsmith_compatibility": [
+    "1.0.9"
+  ],
+  "tested_with_bloxsmith": "1.0.9",
+  "validations": [
+    {
+      "bloxsmith_version": "1.0.9",
+      "framework_commit": "f1a87f6369d2acfb8be41d23ea849384cd461c86",
+      "framework_source_sha256": "66e36a13fd9a23a0a0576ec81552d6e479671db6db9b8692cc7486c5aac4f3b8",
+      "tested_at": "2026-10-11T13:40:43.212646+00:00",
+      "status": "passed",
+      "installation_mode": "bundled",
+      "suite_paths": [
+        "tests/F5.01_x_twitter.py",
+        "tests/F5.02_x_twitter_runtime.py",
+        "tests/F8.01_x_twitter_ui.py"
+      ],
+      "suite_count": 3,
+      "report_sha256": "21b6893b91cea9ab2a4dbe56b190666e9d2e8e36e75385c5cf47c968b12ca715"
+    }
+  ]
+}
